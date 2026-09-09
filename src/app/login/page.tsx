@@ -47,7 +47,7 @@ export default function LoginPage() {
   ];
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 via-blue-50/60 to-slate-200 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950 p-4 sm:p-6 lg:p-12 relative overflow-hidden transition-colors duration-300">
+    <main className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-100 via-blue-50/60 to-slate-200 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950 p-4 sm:p-6 lg:p-12 relative overflow-hidden transition-colors duration-300">
       {/* Theme Toggle in Top Right */}
       <div className="absolute top-5 right-5 z-20 flex items-center gap-2">
         <ThemeToggle />
