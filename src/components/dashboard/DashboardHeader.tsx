@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Logo } from "@/components/ui/Logo";
 import {
   LogOut,
   Calendar,
@@ -64,9 +65,7 @@ export function DashboardHeader() {
         <div className="flex h-16 sm:h-20 items-center justify-between gap-4">
           {/* Logo & Product Brand */}
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-md shadow-blue-500/20 shrink-0">
-              <span className="font-extrabold text-lg sm:text-xl tracking-wider">DL</span>
-            </div>
+            <Logo size="md" />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-extrabold text-slate-900 dark:text-white text-base sm:text-xl tracking-tight leading-tight">

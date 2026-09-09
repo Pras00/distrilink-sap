@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 import {
   Card,
   CardContent,
@@ -108,8 +109,8 @@ export function LoginForm() {
         <div className="h-1.5 w-full bg-linear-to-r from-blue-600 via-indigo-600 to-sky-500" />
 
         <CardHeader className="space-y-2 text-center pb-4 pt-6">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br from-blue-600 to-indigo-700 text-white shadow-md shadow-blue-600/20">
-            <span className="font-extrabold text-xl tracking-wider">DL</span>
+          <div className="flex justify-center mb-1">
+            <Logo size="lg" />
           </div>
 
           <div>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Logo } from "@/components/ui/Logo";
 import {
   BarChart2,
   CheckCircle2,
@@ -61,6 +62,7 @@ export default function LoginPage() {
         {/* Left Side: Brand Story & Features */}
         <div className="hidden lg:flex lg:col-span-6 flex-col justify-between text-slate-900 dark:text-white space-y-8 pr-4 transition-colors duration-300">
           <div>
+            <Logo size="lg" showText subtitle="Distribusi & Sales Force Automation" className="mb-6" />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-500/20 border border-blue-200 dark:border-blue-400/30 text-blue-800 dark:text-blue-300 text-xs font-semibold backdrop-blur-xs transition-colors">
               <CheckCircle2 className="h-3.5 w-3.5" /> Sales Automation Platform (SAP)
             </div>

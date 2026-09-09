@@ -23,7 +23,7 @@ export async function loginUser(credentials: LoginCredentials): Promise<UserProf
             resolvedUsername = matchedUser.username;
           } else {
             throw new Error(
-              "Email ini belum terdaftar di database akun DummyJSON. Silakan gunakan akun uji yang tersedia (misal: emilys / emilyspass) atau klik salah satu Akun Demo di bawah."
+              "Email ini belum terdaftar di database akun. Silakan periksa kembali."
             );
           }
         }
@@ -55,11 +55,11 @@ export async function loginUser(credentials: LoginCredentials): Promise<UserProf
       if (data.message === "Invalid credentials" || response.status === 400) {
         if (isEmail) {
           throw new Error(
-            "Kata sandi untuk email tersebut tidak sesuai. Silakan periksa kembali atau pilih Akun Demo di bawah."
+            "Kata sandi untuk email tersebut tidak sesuai. Silakan periksa kembali."
           );
         }
         throw new Error(
-          "Username atau kata sandi tidak sesuai. Silakan periksa kembali atau gunakan pilihan Akun Demo di bawah."
+          "Username atau kata sandi tidak sesuai. Silakan periksa kembali."
         );
       }
       throw new Error(data.message || "Username atau kata sandi tidak valid");
