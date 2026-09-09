@@ -31,7 +31,7 @@ import {
 const loginSchema = z.object({
   username: z
     .string()
-    .min(3, "Username minimal terdiri dari 3 karakter")
+    .min(3, "Username atau email minimal 3 karakter")
     .trim(),
   password: z
     .string()
@@ -147,11 +147,11 @@ export function LoginForm() {
           </AnimatePresence>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Username Input with Zod validation */}
+            {/* Username / Email Input with Zod validation */}
             <Input
-              label="Username"
+              label="Username atau Email"
               id="username"
-              placeholder="Contoh: emilys"
+              placeholder="Contoh: emilys atau emily.johnson@x.dummyjson.com"
               {...register("username")}
               error={errors.username?.message}
               icon={<User className="h-4 w-4" />}
