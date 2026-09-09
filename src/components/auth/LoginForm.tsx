@@ -110,7 +110,7 @@ export function LoginForm() {
 
         <CardHeader className="space-y-2 text-center pb-4 pt-6">
           <div className="flex justify-center mb-1">
-            <Logo size="lg" />
+            <Logo size="lg" className="mb-2" />
           </div>
 
           <div>
