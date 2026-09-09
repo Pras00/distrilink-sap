@@ -13,8 +13,6 @@ Dalam studi kasus ini, seorang **Supervisor SAP** membutuhkan antarmuka web untu
 2. Berapa total nilai transaksi *taking order* (omset) yang berhasil dicapai.
 3. Berapa banyak pesanan yang gagal akibat kendala ketersediaan stok (*Out of Stock* / OOS).
 
-Aplikasi ini dibangun untuk memenuhi seluruh 7 tugas fungsional dan kriteria penilaian rubrik secara maksimal (target kategori **Sangat Baik / Skor 90–100**).
-
 ---
 
 ## 🚀 Fitur Utama
