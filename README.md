@@ -82,8 +82,6 @@ Akun berikut diambil langsung dari basis data publik [https://dummyjson.com/user
 | :--- | :--- | :--- | :--- | :--- |
 | **Emily Johnson** | `emilys` | `emilyspass` | Sales Manager | ⭐ Rekomendasi Utama |
 | **Michael Williams** | `michaelw` | `michaelwpass` | Support Specialist | Alternatif |
-| **Sophia Brown** | `sophiab` | `sophiabpass` | Accountant | Alternatif |
-| **James Davis** | `jamesd` | `jamesdpass` | Research Analyst | Alternatif |
 
 > *Tip: Anda dapat mengklik langsung kartu akun demo di halaman Login untuk mengisi username & password secara otomatis.*
 
