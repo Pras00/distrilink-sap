@@ -29,8 +29,6 @@ Aplikasi ini dibangun untuk memenuhi seluruh 7 tugas fungsional dan kriteria pen
 - **Pilihan Akun Demo Otentik (dummyjson.com/users)**: Tersedia 4 tombol cepat untuk menguji multi-profil user dari server DummyJSON:
   - **Emily Johnson** (`emilys` / `emilyspass`) — *Sales Manager* (⭐ Rekomendasi Utama)
   - **Michael Williams** (`michaelw` / `michaelwpass`) — *Support Specialist*
-  - **Sophia Brown** (`sophiab` / `sophiabpass`) — *Accountant*
-  - **James Davis** (`jamesd` / `jamesdpass`) — *Research Analyst*
 - **Route Guard / Proteksi Halaman**: Mencegah akses ke `/dashboard` jika belum login, dan mengarahkan otomatis ke `/dashboard` jika sudah memiliki sesi login aktif.
 
 ### 2. Header Dashboard Dinamis, Theme Toggle & Logout
