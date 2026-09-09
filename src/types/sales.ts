@@ -1,0 +1,18 @@
+export interface SalesPerformance {
+  nama_sales: string;
+  area: string;
+  kunjungan_planned: number;
+  kunjungan_unplanned?: number;
+  kunjungan_realisasi: number;
+  efektivitas_visit_persen: number;
+  total_order_rp: number;
+  jumlah_order_oos: number;
+}
+
+export interface DashboardSummary {
+  totalKunjunganRealisasi: number;
+  rataRataEfektivitas: number;
+  totalNilaiOrder: number;
+  totalOrderOOS: number;
+  totalKunjunganPlanned: number;
+}
