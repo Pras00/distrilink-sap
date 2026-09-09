@@ -136,5 +136,5 @@ Akun berikut diambil langsung dari basis data publik [https://dummyjson.com/user
 ---
 
 ## 👤 Pengembang
-- **Kandidat**: Seleksi Magang Frontend Web MagangHub
+- **Kandidat**: Prasetia Wahyu Ramadhan
 - **Mitra Industri**: PT Urbansolv (Distrilink SAP)
