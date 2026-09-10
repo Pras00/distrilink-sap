@@ -55,7 +55,6 @@ interface CustomTooltipProps {
   }>;
 }
 
-// Komponen tooltip statis dideklarasikan di level modul untuk mematuhi aturan static component React 19
 function CustomTooltip({ active, payload }: CustomTooltipProps) {
   if (active && payload && payload.length && payload[0].payload) {
     const item = payload[0].payload;
@@ -64,7 +63,6 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
 
     return (
       <div className="hidden sm:block rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white/95 dark:bg-[#0f172a]/95 p-3.5 sm:p-4 shadow-2xl shadow-slate-900/15 dark:shadow-black/70 backdrop-blur-md text-xs space-y-3 min-w-60 max-w-72 transition-all pointer-events-none">
-        {/* Header: Avatar, Nama, dan Badge Wilayah */}
         <div className="flex items-center justify-between gap-3 pb-2.5 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-indigo-600 text-white font-bold text-xs shadow-xs">
@@ -84,7 +82,6 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
           </span>
         </div>
 
-        {/* Highlight Progress Efektivitas */}
         <div className="rounded-xl p-2.5 bg-slate-50/90 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-800/80 space-y-1.5">
           <div className="flex justify-between items-center text-xs">
             <span className="text-slate-500 dark:text-slate-400 font-medium">
@@ -108,7 +105,6 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
             </div>
           </div>
 
-          {/* Mini progress bar */}
           <div className="h-1.5 w-full bg-slate-200/80 dark:bg-slate-800 rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-300 ${
@@ -123,7 +119,6 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
           </div>
         </div>
 
-        {/* Ringkasan Target vs Realisasi & OOS */}
         <div className="grid grid-cols-2 gap-2 pt-0.5">
           <div className="bg-slate-50/70 dark:bg-slate-900/50 rounded-lg p-2 border border-slate-100 dark:border-slate-800/60">
             <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">
@@ -158,7 +153,6 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
           </div>
         </div>
 
-        {/* Total Omset Taking Order */}
         <div className="flex items-center justify-between pt-1 border-t border-slate-100 dark:border-slate-800/80 text-slate-600 dark:text-slate-300">
           <span className="text-[11px] text-slate-500 dark:text-slate-400">
             Total Taking Order:
@@ -181,9 +175,8 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
-  // Chart data formatting
   const chartData: ChartItemPayload[] = data.map((item) => ({
-    name: item.nama_sales.split(" ")[0], // Nama depan untuk sumbu X
+    name: item.nama_sales.split(" ")[0],
     fullName: item.nama_sales,
     area: item.area,
     efektivitas: item.efektivitas_visit_persen,
@@ -193,7 +186,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
     oos: item.jumlah_order_oos,
   }));
 
-  // Default sales terpilih untuk kartu interaktif mobile (gunakan yang pertama atau top performer)
   const activeMobileSales = selectedSales || chartData[0];
   const targetAchievedCount = chartData.filter((d) => d.efektivitas >= 100).length;
 
@@ -241,7 +233,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
           </CardDescription>
         </div>
 
-        {/* View Toggle Tabs & Target Status */}
         <div className="flex items-center gap-2 self-start sm:self-auto">
           {chartMode === "effectiveness" && (
             <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800">
@@ -280,7 +271,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
       </CardHeader>
 
       <CardContent className="pt-4 sm:pt-6 pb-6 space-y-4">
-        {/* Panduan Interaksi Khusus Layar HP / Mobile */}
         <div className="flex sm:hidden items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-200/60 dark:border-slate-800">
           <span className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300">
             <Hand className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
@@ -291,7 +281,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
           </span>
         </div>
 
-        {/* Kontainer Grafik dengan Scroll Horizontal Halus di Mobile */}
         <AnimatePresence mode="wait">
           <motion.div
             key={`${chartMode}-${isDark ? "dark" : "light"}`}
@@ -310,14 +299,12 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                     onClick={handleChartClick}
                   >
                     <defs>
-                      {/* Modern Electric Blue Gradient */}
                       <linearGradient id="barEffectivenessGrad" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="#38bdf8" />
                         <stop offset="60%" stopColor="#2563eb" />
                         <stop offset="100%" stopColor="#1d4ed8" />
                       </linearGradient>
 
-                      {/* Emerald Target Achieved Gradient */}
                       <linearGradient id="barTargetAchievedGrad" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="#34d399" />
                         <stop offset="60%" stopColor="#10b981" />
@@ -336,7 +323,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                       tickLine={false}
                       axisLine={{ stroke: axisLineColor }}
                     />
-                    {/* Domain 0-110 memberikan ruang visual di atas garis target 100% */}
                     <YAxis
                       domain={[0, 110]}
                       unit="%"
@@ -345,7 +331,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                       axisLine={{ stroke: axisLineColor }}
                     />
 
-                    {/* Tooltip dengan kustomisasi cursor yang halus & beradius (tidak abu-abu pekat) */}
                     <Tooltip
                       content={<CustomTooltip />}
                       cursor={{
@@ -356,7 +341,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                       wrapperStyle={{ pointerEvents: "none", zIndex: 40 }}
                     />
 
-                    {/* Garis batas target 100% dengan penempatan label yang rapi */}
                     <ReferenceLine
                       y={100}
                       stroke={isDark ? "#34d399" : "#059669"}
@@ -467,11 +451,9 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
           </motion.div>
         </AnimatePresence>
 
-        {/* Kartu Rincian Interaktif Khusus Mobile (Tampil di Bawah Grafik di Layar HP) */}
         {activeMobileSales && (
           <div className="sm:hidden pt-2">
             <div className="rounded-2xl border border-blue-200/80 dark:border-blue-900/60 bg-linear-to-br from-blue-50/60 via-white to-slate-50/60 dark:from-blue-950/30 dark:via-[#0c121e] dark:to-slate-900/40 p-4 shadow-xs space-y-3">
-              {/* Header Kartu Mobile */}
               <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-2.5">
                   <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-indigo-600 text-white font-bold text-sm shadow-xs shrink-0">
@@ -499,7 +481,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                 </span>
               </div>
 
-              {/* Progress Bar Efektivitas Mobile */}
               <div className="space-y-1.5 bg-white/80 dark:bg-slate-900/80 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800">
                 <div className="flex justify-between items-center text-xs">
                   <span className="text-slate-600 dark:text-slate-400 font-medium">
@@ -533,7 +514,6 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                 </div>
               </div>
 
-              {/* Grid 3 Metrik Inti */}
               <div className="grid grid-cols-3 gap-2 text-center">
                 <div className="p-2 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800/60">
                   <p className="text-[10px] text-slate-400 dark:text-slate-500">

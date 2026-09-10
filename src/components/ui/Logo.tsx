@@ -52,7 +52,6 @@ export function Logo({
 }: LogoProps) {
   const cfg = sizeConfig[size] || sizeConfig.md;
   const rawId = useId();
-  // Sanitasi ID agar valid untuk selector SVG url(#...)
   const safeId = rawId.replace(/[^a-zA-Z0-9_-]/g, "");
   const mainGradId = `dl-grad-main-${safeId}`;
   const accentGradId = `dl-grad-accent-${safeId}`;
@@ -90,7 +89,6 @@ export function Logo({
         </linearGradient>
       </defs>
 
-      {/* D Backbone (Supply chain spine) */}
       <path
         d="M 14 11 L 14 37"
         stroke={`url(#${mainGradId})`}
@@ -98,7 +96,6 @@ export function Logo({
         strokeLinecap="round"
       />
 
-      {/* D Outer Arch Loop (Distribution Link Curve) */}
       <path
         d="M 14 11 C 27 11, 37 16, 37 24 C 37 32, 27 37, 14 37"
         stroke={`url(#${mainGradId})`}
@@ -106,7 +103,6 @@ export function Logo({
         strokeLinecap="round"
       />
 
-      {/* Top Node Hub */}
       <circle
         cx="14"
         cy="11"
@@ -117,7 +113,6 @@ export function Logo({
       />
       <circle cx="14" cy="11" r="2" fill="#38bdf8" />
 
-      {/* Bottom Node Hub */}
       <circle
         cx="14"
         cy="37"
@@ -128,7 +123,6 @@ export function Logo({
       />
       <circle cx="14" cy="37" r="2" fill="#38bdf8" />
 
-      {/* Dynamic Ascending Arrow (Growth & Target Achievement) */}
       <path
         d="M 21 27 L 31 17 M 31 17 H 24 M 31 17 V 24"
         stroke="#ffffff"
@@ -137,7 +131,6 @@ export function Logo({
         strokeLinejoin="round"
       />
 
-      {/* Distribution Node on Curve */}
       <circle
         cx="36.5"
         cy="24"
@@ -147,7 +140,6 @@ export function Logo({
     </svg>
   );
 
-  // Jika hanya menampilkan badge/ikon
   if (badgeOnly || !showText) {
     return (
       <div
@@ -162,10 +154,8 @@ export function Logo({
     );
   }
 
-  // Jika menampilkan logo lengkap (Ikon + Teks sejajar sempurna)
   return (
     <div className={`inline-flex items-center gap-3.5 ${className}`}>
-      {/* Icon Badge - isolated from external margin-bottom */}
       <div
         className={`relative flex items-center justify-center shrink-0 ${cfg.radius} bg-linear-to-br from-blue-600 via-indigo-600 to-sky-500 p-0.5 shadow-md shadow-blue-500/25 ${cfg.icon}`}
       >
@@ -176,7 +166,6 @@ export function Logo({
         </div>
       </div>
 
-      {/* Typography Lockup perfectly centered vertically */}
       <div className="flex flex-col justify-center">
         <div className="flex items-center gap-1.5 leading-none">
           <span

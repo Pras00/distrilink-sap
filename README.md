@@ -1,119 +1,182 @@
 # Distrilink SAP — Dashboard Analisa Performa Salesman
-> **Take-Home Test Magang Frontend Web — MagangHub x PT Urbansolv**  
-> Studi Kasus: Purwarupa (*Prototype*) Dashboard Analisa Performa Salesman untuk Supervisor SAP (Sales Automation Platform).
+> **Take-Home Assessment Frontend Web — Seleksi Magang MagangHub x PT Urbansolv**  
+> Purwarupa (*Prototype*) Web Dashboard Analisa Performa Salesman untuk Supervisor SFA (*Sales Automation Platform*).
+
+[![Next.js](https://img.shields.io/badge/Next.js-16.3.4-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![Vercel Deployment](https://img.shields.io/badge/Deployment-Vercel-success?style=flat-square&logo=vercel)](https://distrilink-sap.vercel.app)
 
 ---
 
-## 📋 Ringkasan Studi Kasus
+## 🌐 Tautan Demo & Repositori
 
-**Distrilink SAP (Sales Automation Platform)** adalah platform enterprise yang menghubungkan tim *sales/canvasser* di lapangan dengan sistem *backoffice* secara *real-time*. 
-
-Dalam studi kasus ini, seorang **Supervisor SAP** membutuhkan antarmuka web untuk memantau performa harian tim sales di wilayah kerjanya:
-1. Seberapa efektif kunjungan outlet yang telah dilakukan terhadap target terjadwal.
-2. Berapa total nilai transaksi *taking order* (omset) yang berhasil dicapai.
-3. Berapa banyak pesanan yang gagal akibat kendala ketersediaan stok (*Out of Stock* / OOS).
+- **Live Production URL**: [https://distrilink-sap.vercel.app](https://distrilink-sap.vercel.app)
+- **Tautan Dashboard Langsung**: [https://distrilink-sap.vercel.app/dashboard](https://distrilink-sap.vercel.app/dashboard)
+- **Repositori GitHub**: [https://github.com/Pras00/distrilink-sap](https://github.com/Pras00/distrilink-sap)
 
 ---
 
-## 🚀 Fitur Utama
+## 📋 Ringkasan Studi Kasus & Konteks Bisnis
 
-### 1. Autentikasi Riil (API DummyJSON) & Validasi Schema Zod
-- **API Sungguhan**: Terhubung langsung ke `POST https://dummyjson.com/auth/login`.
-- **Validasi Schema Zod & React Hook Form**: Form divalidasi secara instan menggunakan schema Zod sebelum request dikirimkan ke server.
-- **Penanganan Status Autentikasi**:
-  - **Sukses (200)**: Menyimpan profil dan token pengguna ke *state* dan `localStorage`, kemudian mengalihkan pengguna ke `/dashboard`.
-  - **Gagal (400/401)**: Menampilkan pesan error spesifik dari API (contoh: *Invalid credentials*) menggunakan kartu alert animasi.
-  - **Loading State**: Tombol submit menampilkan animasi *spinner* dan berstatus *disabled* selama proses verifikasi.
-- **Pilihan Akun Demo Otentik (dummyjson.com/users)**: Tersedia 4 tombol cepat untuk menguji multi-profil user dari server DummyJSON:
-  - **Emily Johnson** (`emilys` / `emilyspass`) — *Sales Manager* (⭐ Rekomendasi Utama)
+**Distrilink SAP (Sales Automation Platform)** adalah platform terintegrasi yang menghubungkan tim *sales/canvasser* lapangan dengan sistem *backoffice* distributor secara *real-time*. Fitur utamanya mencakup *Mobile SFA Taking Order*, *Geotagging & New Outlet Onboarding (NOO)*, *Live Tracking*, serta penanganan *Pesanan Tanpa Kunjungan / Out of Stock (OOS)*.
+
+Dalam studi kasus ini, seorang **SFA Supervisor** memerlukan antarmuka web terpusat untuk mengevaluasi kinerja harian tim *canvasser* di wilayah operasionalnya:
+1. **Efektivitas Kunjungan**: Membandingkan realisasi kunjungan toko terhadap rencana target harian.
+2. **Realisasi Omset**: Memantau total nilai rupiah pesanan (*taking order*) yang dibukukan.
+3. **Deteksi Kendala Stok (OOS)**: Mengidentifikasi jumlah pesanan yang gagal dipenuhi akibat ketiadaan stok barang di gudang/distributor agar dapat segera dimitigasi.
+
+---
+
+## ✅ Matriks Pemenuhan Kebutuhan Soal (Requirement Compliance)
+
+Seluruh 7 poin tugas dan ketentuan teknis pada dokumen soal telah dianalisis dan dipenuhi secara menyeluruh:
+
+| No | Kebutuhan / Tugas Soal (PDF) | Status | Implementasi pada Aplikasi | Berkas Terkait |
+| :-: | :--- | :-: | :--- | :--- |
+| **1** | **Halaman Login Terhubung ke API Sungguhan**<br>Form username, password, tombol "Masuk", terhubung ke `https://dummyjson.com/auth/login`, penanganan error yang jelas. | **Terpenuhi** ⭐ | Menggunakan React Hook Form + Zod. Terhubung langsung ke API DummyJSON. Dilengkapi alert error informatif berbahasa Indonesia, tombol *quick demo accounts*, dan *smart email-to-username resolver*. | [`LoginForm.tsx`](src/components/auth/LoginForm.tsx)<br>[`api.ts`](src/lib/api.ts) |
+| **2** | **Redirect Dashboard & Tampilkan Nama Pengguna**<br>Mengarahkan user setelah login dan menampilkan nama dari respons API di header. | **Terpenuhi** ⭐ | Redirect otomatis via Next.js router. Header menampilkan nama lengkap (`Emily Johnson`), avatar foto profil riil DummyJSON, badge SFA Supervisor, dan dropdown profil interaktif. | [`DashboardHeader.tsx`](src/components/dashboard/DashboardHeader.tsx)<br>[`AuthContext.tsx`](src/context/AuthContext.tsx) |
+| **3** | **Dashboard Responsif (Desktop, Tablet, Mobile)**<br>Menampilkan daftar sales dan metrik dari dataset lokal. | **Terpenuhi** ⭐ | Desain *fluid responsive* berbasis Tailwind CSS. Optimal di desktop, tablet, dan smartphone dengan penanganan khusus layar sentuh. | [`page.tsx`](src/app/dashboard/page.tsx)<br>[`SalesTable.tsx`](src/components/dashboard/SalesTable.tsx) |
+| **4** | **Kartu Ringkasan (Summary Cards)**<br>Minimal: Total kunjungan realisasi tim, rata-rata efektivitas tim, total nilai order. | **Terpenuhi** ⭐ | Menghitung 4 metrik dinamis: Realisasi Kunjungan (76 Outlet), Rata-rata Efektivitas (80.2%), Total Nilai Order (Rp 33.130.002), dan Pesanan Gagal OOS (10 Order). | [`SummaryCards.tsx`](src/components/dashboard/SummaryCards.tsx)<br>[`utils.ts`](src/lib/utils.ts) |
+| **5** | **Visualisasi Grafik (Minimal 1 Chart Bar/Pie)**<br>Visualisasi data, misal efektivitas kunjungan antar sales. | **Terpenuhi** ⭐ | **Interactive Recharts Bar Chart** dengan 2 mode tampilan (% Efektivitas vs Planned/Realisasi), gradasi *Electric Blue* & *Emerald Target 100%*, custom tooltip, dan *docked mobile detail card*. | [`PerformanceChart.tsx`](src/components/dashboard/PerformanceChart.tsx) |
+| **6** | **Fitur Pencarian & Filter Sederhana**<br>Pencarian nama/area dan filter berdasarkan area. | **Terpenuhi** ⭐ | *Live text search* (nama salesman/area), dropdown filter wilayah, *multi-column sorting* (asc/desc), pagination interaktif, serta *empty state* dengan tombol *reset filter*. | [`SalesTable.tsx`](src/components/dashboard/SalesTable.tsx) |
+| **7** | **Tombol Logout pada Dashboard**<br>Mengembalikan pengguna ke halaman Login. | **Terpenuhi** ⭐ | Tombol logout di dropdown profil supervisor. Membersihkan sesi `localStorage` dan meredirect pengguna kembali ke `/login`. | [`DashboardHeader.tsx`](src/components/dashboard/DashboardHeader.tsx) |
+| **8** | **Ketentuan Teknis Wajib**<br>Next.js, TypeScript, Tailwind CSS, dataset lokal, README jelas. | **Terpenuhi** ⭐ | Next.js 16.3.4 (Turbopack), React 19, TypeScript strict mode, Tailwind CSS v4, dataset lokal presisi, dan dokumentasi lengkap. | *Root Repository* |
+
+---
+
+## 📌 Asumsi Teknis & Bisnis (Explicit Documentation)
+
+Sesuai dengan ketentuan umum pada dokumen soal (*"Jika ada asumsi yang diambil karena soal tidak menjelaskan detail tertentu, kandidat wajib menuliskan asumsi tersebut secara eksplisit"*), berikut adalah daftar asumsi yang diterapkan:
+
+1. **Peran Pengguna Supervisor Regional**:  
+   Pengguna yang melakukan login diasumsikan memiliki peran sebagai **SFA Supervisor Lapangan** untuk regional Jawa Barat. Wilayah operasional mencakup 5 area kerja salesman: Bandung Kota, Bandung Barat, Cimahi, Bandung Timur, dan Soreang.
+2. **Kompabilitas Input Login (Email & Username)**:  
+   Meskipun endpoint `POST https://dummyjson.com/auth/login` secara baku menerima `username`, pengguna di lapangan sering kali mengingat akun mereka dalam format *email*. Aplikasi dilengkapi fitur *smart lookup*: jika pengguna memasukkan email akun DummyJSON yang valid (misal: `emily.johnson@x.dummyjson.com`), sistem secara otomatis mencari username terkait di DummyJSON sebelum mengirim otorisasi, sehingga login tetap berjalan mulus.
+3. **Persistensi Sesi Autentikasi**:  
+   Sesuai arahan soal, token dan profil pengguna disimpan di `localStorage` klien (`distrilink_auth_user`) dan disinkronkan secara reaktif menggunakan `useSyncExternalStore` pada React 19 untuk mencegah masalah *hydration mismatch*.
+4. **Metrik Kendala Out of Stock (OOS)**:  
+   Ketika seorang salesman tidak memiliki pesanan gagal OOS (`jumlah_order_oos: 0`), tampilan distandarkan menjadi label hijau informatif `"0 order"` (bukan teks kosong atau tanda minus) agar supervisor langsung mendapatkan kepastian bahwa stok aman.
+5. **Kategori Ambang Efektivitas Kunjungan**:  
+   Untuk mempermudah pemantauan visual, efektivitas kunjungan diklasifikasikan ke dalam 3 level performa:
+   - **Sangat Baik / Mencapai Target ($\ge 85\%$)**: Indikator warna hijau zamrud (*Emerald*).
+   - **Baik / Cukup ($75\% - 84\%$)**: Indikator warna biru/kuning (*Amber*).
+   - **Perlu Evaluasi ($< 75\%$)**: Indikator warna merah (*Rose*).
+
+---
+
+## 🌟 Fitur Unggulan & Penyempurnaan Tambahan
+
+Selain memenuhi seluruh kebutuhan dasar soal, aplikasi ini dilengkapi berbagai fitur bernilai tambah (*exceeding expectations*):
+
+### 1. Desain Logo Vektor Korporat Resmi (`Logo.tsx`)
+- Logo SVG murni kustom tanpa gambar statis raster, merepresentasikan huruf **"D"** (*Distribution*), jalur tulang punggung rantai pasok (*Spine Chain*), titik simpul toko (*Distribution Nodes*), dan panah pertumbuhan penjualan (*Dynamic Growth Arrow*).
+- Menggunakan ID SVG dinamis via `useId()` sehingga aman dari bentrokan ID rendering di Next.js.
+
+### 2. Optimasi Mobile & Tablet Touch Experience
+- **Horizontal Scrollable Chart**: Pada layar HP/tablet, grafik memiliki batas minimum lebar yang nyaman (`min-w-155`) sehingga setiap batang memiliki ruang sentuh yang lega tanpa berdesakan.
+- **Docked Mobile Detail Card**: Rincian metrik salesman tampil pada kartu interaktif khusus tepat di bawah grafik saat batang disentuh di smartphone, mencegah *floating tooltip* yang menutupi grafik atau terhalang jempol pengguna.
+- **Bebas Outline Mengganggu**: Telah dikonfigurasi penghilangan *browser focus border* dan `-webkit-tap-highlight-color` saat batang grafik disentuh pada perangkat layar sentuh.
+
+### 3. Dukungan Penuh Dark Mode & Light Mode
+- Dilengkapi tombol toggle tema dengan animasi ikon Matahari & Bulan berbasis **Framer Motion**.
+- Terintegrasi dengan warna tema grafik Recharts (grid lines dan label sumbu otomatis berganti kontras mengikuti mode gelap/terang).
+- Bebas *flicker* saat dimuat ulang (*anti-flash script* & sinkronisasi tema).
+
+### 4. Tombol Cepat Akun Demo (One-Click Demo Accounts)
+- Memudahkan penguji/rekruter menguji login tanpa harus menghafal atau mengetik kredensial DummyJSON secara manual:
+  - **Emily Johnson** (`emilys` / `emilyspass`) — *Sales Manager* (⭐ Akun Utama)
   - **Michael Williams** (`michaelw` / `michaelwpass`) — *Support Specialist*
-- **Route Guard / Proteksi Halaman**: Mencegah akses ke `/dashboard` jika belum login, dan mengarahkan otomatis ke `/dashboard` jika sudah memiliki sesi login aktif.
-
-### 2. Header Dashboard Dinamis, Theme Toggle & Logout
-- Menampilkan nama pengguna aktif secara dinamis dari respons API (contoh: **Emily Johnson**).
-- Menampilkan avatar foto profil asli dari API DummyJSON, status online, badge peran *SFA Supervisor*, penanggalan dinamis Bahasa Indonesia.
-- **Tombol Animasi Dark / Light Mode (ThemeToggle)**: Tombol interaktif dengan animasi rotasi dan skala ikon Bulan & Matahari menggunakan **Framer Motion**.
-- Tombol **Logout** yang membersihkan sesi dan mengembalikan pengguna ke halaman Login.
-
-### 3. Tema Gelap & Terang (Dark / Light Mode)
-- Mendukung mode tampilan terang (*Light Mode*) dan gelap (*Dark Mode*) secara menyeluruh di seluruh aplikasi.
-- **Animasi Ikon Sun & Moon**: Transisi berputar halus ($180^\circ$) dengan efek *spring* saat tombol diklik.
-- **Penyimpanan Status**: Preferensi tema tersimpan di `localStorage` (`distrilink_theme`) sehingga tidak hilang saat me-refresh halaman browser.
-- **Penyesuaian Visual Cerdas**:
-  - Warna kontras kartu dan teks disesuaikan secara presisi.
-  - Grid lines dan teks sumbu grafik Recharts otomatis menyesuaikan kontras ketika berpindah tema.
-
-### 4. Ringkasan Metrik (Summary Cards)
-Menghitung secara dinamis 4 kartu metrik utama dari dataset:
-- **Total Kunjungan Realisasi**: Penjumlahan seluruh kunjungan outlet yang berhasil tercapai ($15 + 20 + 10 + 19 + 12 = 76$ outlet dari target 91).
-- **Rata-rata Efektivitas Tim**: Rata-rata persentase efektivitas kunjungan seluruh tim ($80.2\%$).
-- **Total Nilai Order**: Akumulasi nilai pesanan dalam format Rupiah standar Indonesia (**Rp 33.130.002**).
-- **Total Pesanan Gagal (OOS)**: Indikator kendala stok kosong ($10$ pesanan gagal).
-
-### 5. Visualisasi Grafik Interaktif (Recharts)
-- Visualisasi data dengan **Bar Chart** modern yang responsif.
-- Fitur **Mode Toggle**:
-  - Mode **% Efektivitas**: Membandingkan persentase kunjungan tiap salesman terhadap garis acuan target 100%.
-  - Mode **Planned vs Realisasi**: Membandingkan jumlah outlet yang terjadwal versus outlet yang berhasil dikunjungi secara riil.
-- **Custom Tooltip**: Menampilkan rincian komprehensif (nama lengkap, area, efektivitas, omset, dan OOS) saat kursor diarahkan ke grafik.
-
-### 6. Tabel Data Performa Interaktif
-- Menampilkan seluruh metrik salesman: Nama Salesman, Area Kerja, Kunjungan Planned, Realisasi, Efektivitas Visit, Total Nilai Order, dan Order OOS.
-- **Live Search**: Pencarian instan berdasarkan nama salesman atau wilayah area.
-- **Filter Area**: Dropdown untuk menyaring data berdasarkan wilayah (Bandung Kota, Bandung Barat, Bandung Timur, Cimahi, Soreang).
-- **Sortable Columns**: Pengurutan data (naik/turun) pada seluruh kolom.
-- **Indikator Visual**: *Progress bar* dan badge warna (Hijau $\ge 85\%$, Kuning $75-84\%$, Merah $<75\%$) untuk memudahkan evaluasi visual cepat oleh supervisor.
-- **Empty State**: Tampilan informatif jika pencarian atau filter tidak menghasilkan data, dilengkapi tombol reset filter.
-
-### 7. Desain UI & Animasi Halus (Framer Motion)
-- Menggunakan tipografi **Plus Jakarta Sans** dari Google Fonts yang memberi kesan ramah, luwes, modern, dan sangat profesional tanpa kesan template generik.
-- Mengadopsi arsitektur komponen **Shadcn UI** dengan `class-variance-authority`.
-- Animasi transisi *staggered entrance*, efek *hover lift*, dan transisi lembut mode chart menggunakan **Framer Motion**.
 
 ---
 
 ## 🔑 Kredensial Pengujian (DummyJSON)
 
-Akun berikut diambil langsung dari basis data publik [https://dummyjson.com/users](https://dummyjson.com/users):
+Akun uji resmi yang terhubung ke server publik [https://dummyjson.com/users](https://dummyjson.com/users):
 
-| Nama Pengguna | Username | Password | Posisi di DummyJSON | Status |
-| :--- | :--- | :--- | :--- | :--- |
-| **Emily Johnson** | `emilys` | `emilyspass` | Sales Manager | ⭐ Rekomendasi Utama |
-| **Michael Williams** | `michaelw` | `michaelwpass` | Support Specialist | Alternatif |
-
-> *Tip: Anda dapat mengklik langsung kartu akun demo di halaman Login untuk mengisi username & password secara otomatis.*
+| Nama Akun | Username / Email | Password | Jabatan DummyJSON |
+| :--- | :--- | :--- | :--- |
+| **Emily Johnson** | `emilys` *(atau `emily.johnson@x.dummyjson.com`)* | `emilyspass` | Sales Manager (⭐ Utama) |
+| **Michael Williams** | `michaelw` *(atau `michael.williams@x.dummyjson.com`)* | `michaelwpass` | Support Specialist |
 
 ---
 
-## 🛠️ Tech Stack & Justifikasi Arsitektur
+## 🛠️ Arsitektur & Teknologi yang Digunakan
 
-| Teknologi | Justifikasi Pemilihan |
-| :--- | :--- |
-| **Next.js (App Router)** | Framework React standar industri modern yang menyediakan *client/server component separation*, struktur rute berbasis folder yang rapi, optimasi aset otomatis, dan performa kompilasi cepat via Turbopack. |
-| **TypeScript** | Memastikan *type safety* yang ketat pada struktur data API DummyJSON, model dataset performa sales, serta props komponen, sehingga meminimalisir potensi *runtime error*. |
-| **Tailwind CSS (v4)** | Memungkinkan styling antarmuka dengan efisiensi tinggi, desain responsif multi-breakpoint (`sm`, `md`, `lg`), dan menghasilkan ukuran berkas CSS yang sangat ringan. |
-| **Plus Jakarta Sans** | Tipografi geometris modern buatan Indonesia yang memberikan kesan segar, bersahabat, namun berbobot enterprise. |
-| **Shadcn UI Architecture** | Komponen UI modular berbasis `class-variance-authority` (CVA) dan Tailwind CSS untuk konsistensi desain sistem. |
-| **Zod & React Hook Form** | Validasi schema yang ketat, deklaratif, berkinerja tinggi, dan ramah pengguna dengan error message yang presisi. |
-| **Framer Motion** | Pustaka animasi standar produksi untuk memberikan micro-interactions, animasi tombol Sun/Moon, dan transisi antar halaman yang halus. |
-| **Recharts** | Pustaka visualisasi data deklaratif yang terintegrasi sempurna dengan komponen React, mendukung `ResponsiveContainer` dan kustomisasi SVG yang halus. |
-| **Lucide React** | Koleksi ikon SVG yang konsisten, modern, dan berukuran kecil (*tree-shakeable*). |
-| **Context API & LocalStorage** | Manajemen status autentikasi dan tema yang ringan dan persisten di sisi klien tanpa *overhead* pustaka pihak ketiga yang berlebih. |
+| Teknologi | Versi | Alasan & Justifikasi Pemilihan |
+| :--- | :---: | :--- |
+| **Next.js (App Router)** | `16.3.4` | Framework React modern dengan *Turbopack bundling* ultra cepat, optimasi aset gambar dan font bawaan, serta arsitektur berbasis rute yang bersih. |
+| **React** | `19.0.0` | Menghadirkan performa render mutakhir dengan *Concurrent features* dan integrasi `useSyncExternalStore` untuk manajemen state lokal tanpa efek samping hidrasi. |
+| **TypeScript** | `^5` | Memberikan *type-safety* penuh pada antarmuka model data (`SalesPerformance`, `UserProfile`), memastikan tidak ada *runtime undefined errors*. |
+| **Tailwind CSS** | `v4` | Engine styling modern berbasis CSS-first yang menghasilkan bundle CSS ultra ringan dengan utilitas responsif lengkap. |
+| **Recharts** | `^2.15` | Pustaka visualisasi data deklaratif yang terintegrasi sempurna dengan siklus hidup React dan mendukung grafis SVG responsif. |
+| **Framer Motion** | `^12` | Menyediakan micro-interactions yang elegan pada transisi kartu, pergantian tema gelap/terang, dan animasi loading. |
+| **React Hook Form + Zod** | `^7` / `^3` | Validasi input form berbasis skema deklaratif yang tangguh dan memberikan umpan balik kesalahan secara *instant*. |
+| **Lucide React** | `^0.475` | Ikonografi SVG yang bersih, tajam, dan seragam untuk estetika dashboard korporat. |
+
+---
+
+## 📂 Struktur Direktori Proyek
+
+```text
+test-maganghub-urbansolv/
+├── src/
+│   ├── app/
+│   │   ├── dashboard/
+│   │   │   └── page.tsx            # Halaman utama dashboard (Summary, Chart, Table)
+│   │   ├── login/
+│   │   │   └── page.tsx            # Halaman login dengan showcase brand story
+│   │   ├── globals.css             # Konfigurasi Tailwind v4 & touch reset
+│   │   ├── layout.tsx              # Root layout, Plus Jakarta Sans, Provider wrapper
+│   │   └── page.tsx                # Root redirect otomatis (/dashboard atau /login)
+│   ├── components/
+│   │   ├── auth/
+│   │   │   └── LoginForm.tsx       # Form login interaktif (Zod, API, Quick Accounts)
+│   │   ├── dashboard/
+│   │   │   ├── DashboardHeader.tsx # Header aplikasi, info user API, theme toggle & logout
+│   │   │   ├── PerformanceChart.tsx# Recharts visualizer dual-mode & mobile docked card
+│   │   │   ├── SalesTable.tsx      # Tabel data sales, search, filter, sort, pagination
+│   │   │   └── SummaryCards.tsx    # 4 kartu ringkasan metrik utama
+│   │   └── ui/
+│   │       ├── Badge.tsx           # Komponen badge status
+│   │       ├── Button.tsx          # Komponen tombol reusable
+│   │       ├── Card.tsx            # Primitif kartu container
+│   │       ├── Input.tsx           # Primitif input form
+│   │       ├── Logo.tsx            # Vektor SVG resmi Distrilink SAP
+│   │       ├── Select.tsx          # Dropdown filter wilayah
+│   │       └── ThemeToggle.tsx     # Animated Sun/Moon switcher
+│   ├── context/
+│   │   ├── AuthContext.tsx         # Manajemen status sesi & integrasi API login
+│   │   └── ThemeContext.tsx        # Manajemen status dark/light mode
+│   ├── data/
+│   │   └── salesData.ts            # Dataset lokal performa 5 salesman harian
+│   ├── lib/
+│   │   ├── api.ts                  # Integrasi fetch API DummyJSON
+│   │   └── utils.ts                # Helper format Rupiah, persen, & kalkulasi metrik
+│   └── types/
+│       ├── auth.ts                 # Type definition profil user & autentikasi
+│       └── sales.ts                # Type definition metrik sales & dashboard summary
+├── public/                         # Aset publik statis
+├── package.json                    # Konfigurasi dependensi
+├── tsconfig.json                   # Konfigurasi TypeScript
+└── README.md                       # Dokumentasi resmi proyek
+```
 
 ---
 
 ## 💻 Panduan Instalasi & Menjalankan di Lokal
 
 ### Prasyarat:
-- **Node.js**: Versi 18.18.0 atau lebih tinggi (disarankan v20 / v24).
-- **npm** (atau pnpm / yarn).
+- **Node.js**: Versi 18.18.0 atau lebih baru (direkomendasikan Node.js v20 LTS atau v22/v24).
+- **npm** (atau package manager alternatif seperti `pnpm` / `yarn`).
 
-### Langkah Menjalankan:
+### Langkah-langkah:
 
-1. **Clone repository**:
+1. **Clone repositori dari GitHub**:
    ```bash
-   git clone <URL_REPOSITORY>
-   cd test-maganghub-urbansolv
+   git clone https://github.com/Pras00/distrilink-sap.git
+   cd distrilink-sap
    ```
 
 2. **Instal seluruh dependensi**:
@@ -121,13 +184,19 @@ Akun berikut diambil langsung dari basis data publik [https://dummyjson.com/user
    npm install
    ```
 
-3. **Jalankan server pengembangan (development mode)**:
+3. **Jalankan server pengembangan lokal (*development mode*)**:
    ```bash
    npm run dev
    ```
-   Buka peramban (*browser*) dan akses: [http://localhost:3000](http://localhost:3000).
+   Buka peramban (*browser*) dan kunjungi: **[http://localhost:3000](http://localhost:3000)**.  
+   *(Aplikasi akan secara otomatis mengarahkan Anda ke `/login` jika belum memiliki sesi aktif).*
 
-4. **Build untuk produksi (production build test)**:
+4. **Menjalankan Linter**:
+   ```bash
+   npm run lint
+   ```
+
+5. **Membangun versi produksi (*production build*)**:
    ```bash
    npm run build
    npm run start
@@ -135,6 +204,11 @@ Akun berikut diambil langsung dari basis data publik [https://dummyjson.com/user
 
 ---
 
-## 👤 Pengembang
-- **Kandidat**: Prasetia Wahyu Ramadhan
+## 👤 Informasi Pengembang
+
+- **Nama Kandidat**: Prasetia Wahyu Ramadhan
+- **Posisi**: Frontend Web Intern
+- **Program**: Seleksi Magang MagangHub
 - **Mitra Industri**: PT Urbansolv (Distrilink SAP)
+- **Tautan Portfolio / GitHub**: [https://github.com/Pras00](https://github.com/Pras00)
+

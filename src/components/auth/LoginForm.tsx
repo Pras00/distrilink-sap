@@ -28,7 +28,6 @@ import {
   UserRoundPen,
 } from "lucide-react";
 
-// Schema validasi Zod untuk Login
 const loginSchema = z.object({
   username: z
     .string()
@@ -41,7 +40,6 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
-// Data kredensial riil yang diverifikasi dari https://dummyjson.com/users
 const DUMMY_ACCOUNTS = [
   {
     name: "Emily Johnson",
@@ -105,7 +103,6 @@ export function LoginForm() {
       className="w-full"
     >
       <Card className="border-slate-200/90 dark:border-slate-800 shadow-xl shadow-slate-900/10 dark:shadow-black/40 bg-white/95 dark:bg-[#0c121e]/95 backdrop-blur-sm overflow-hidden">
-        {/* Top Accent Strip */}
         <div className="h-1.5 w-full bg-linear-to-r from-blue-600 via-indigo-600 to-sky-500" />
 
         <CardHeader className="space-y-2 text-center pb-4 pt-6">
@@ -128,7 +125,6 @@ export function LoginForm() {
         </CardHeader>
 
         <CardContent className="space-y-5 px-6 pb-6">
-          {/* Animated Error Alert */}
           <AnimatePresence mode="wait">
             {apiError && (
               <motion.div
@@ -148,18 +144,16 @@ export function LoginForm() {
           </AnimatePresence>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Username / Email Input with Zod validation */}
             <Input
               label="Username atau Email"
               id="username"
-              placeholder="Contoh: emilys atau emily.johnson@x.dummyjson.com"
+              placeholder="Contoh: emilys@gmail.com"
               {...register("username")}
               error={errors.username?.message}
               icon={<User className="h-4 w-4" />}
               disabled={isLoading}
             />
 
-            {/* Password Input with Zod validation */}
             <div className="relative">
               <Input
                 label="Kata Sandi"
@@ -204,7 +198,6 @@ export function LoginForm() {
             </Button>
           </form>
 
-          {/* Quick Demo Accounts Selection from DummyJSON */}
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/60 p-3.5 space-y-2.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">

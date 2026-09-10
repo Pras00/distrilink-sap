@@ -49,17 +49,14 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-100 via-blue-50/60 to-slate-200 dark:from-slate-900 dark:via-slate-950 dark:to-blue-950 p-4 sm:p-6 lg:p-12 relative overflow-hidden transition-colors duration-300">
-      {/* Theme Toggle in Top Right */}
       <div className="absolute top-5 right-5 z-20 flex items-center gap-2">
         <ThemeToggle />
       </div>
 
-      {/* Decorative ambient gradients */}
       <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-400/20 dark:bg-blue-600/20 rounded-full blur-3xl pointer-events-none transition-colors duration-300" />
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-400/20 dark:bg-indigo-600/20 rounded-full blur-3xl pointer-events-none transition-colors duration-300" />
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-400/20 dark:indigo-600/20 rounded-full blur-3xl pointer-events-none transition-colors duration-300" />
 
       <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10">
-        {/* Left Side: Brand Story & Features */}
         <div className="hidden lg:flex lg:col-span-6 flex-col justify-between text-slate-900 dark:text-white space-y-8 pr-4 transition-colors duration-300">
           <div>
             <Logo size="lg" showText subtitle="Distribusi & Sales Force Automation" className="mb-6" />
@@ -75,7 +72,6 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Highlights grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {highlights.map((item, idx) => {
               const Icon = item.icon;
@@ -102,7 +98,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Right Side: Login Form Card */}
         <div className="lg:col-span-6 flex justify-center">
           <LoginForm />
         </div>

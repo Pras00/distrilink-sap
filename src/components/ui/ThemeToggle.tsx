@@ -21,7 +21,6 @@ export function ThemeToggle({
 }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
 
-  // useSyncExternalStore safely detects client mount without cascading renders
   const mounted = useSyncExternalStore(
     emptySubscribe,
     () => true,

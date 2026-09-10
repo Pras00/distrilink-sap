@@ -63,7 +63,6 @@ export function DashboardHeader() {
     <header className="sticky top-0 z-30 w-full border-b border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-[#0c121e]/90 backdrop-blur-md transition-all shadow-2xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 sm:h-20 items-center justify-between gap-4">
-          {/* Logo & Product Brand */}
           <div className="flex items-center gap-3">
             <Logo size="md" />
             <div>
@@ -81,18 +80,14 @@ export function DashboardHeader() {
             </div>
           </div>
 
-          {/* Actions: Date, ThemeToggle, and User Profile with Dropdown */}
           <div className="flex items-center gap-2.5 sm:gap-4">
-            {/* Date Widget (Desktop) */}
             <div className="hidden lg:flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-200/70 dark:border-slate-700/60">
               <Calendar className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500" />
               <span>{formattedDate}</span>
             </div>
 
-            {/* Animated Dark/Light Theme Toggle */}
             <ThemeToggle />
 
-            {/* Profile Trigger & Dropdown Menu */}
             <div className="relative pl-1 sm:pl-2 border-l border-slate-200 dark:border-slate-800" ref={dropdownRef}>
               <button
                 type="button"
@@ -101,7 +96,6 @@ export function DashboardHeader() {
                 aria-expanded={isDropdownOpen}
                 aria-haspopup="true"
               >
-                {/* Avatar */}
                 {user?.image ? (
                   <div className="relative h-9 w-9 sm:h-10 sm:w-10 overflow-hidden rounded-full border border-blue-200 dark:border-blue-800 shadow-2xs shrink-0">
                     <Image
@@ -119,7 +113,6 @@ export function DashboardHeader() {
                   </div>
                 )}
 
-                {/* Name & Role */}
                 <div className="text-left">
                   <div className="flex items-center gap-1">
                     <span className="text-sm font-bold text-slate-900 dark:text-slate-100 leading-tight block">
@@ -137,7 +130,6 @@ export function DashboardHeader() {
                 </div>
               </button>
 
-              {/* Animated Profile Dropdown */}
               <AnimatePresence>
                 {isDropdownOpen && (
                   <motion.div
@@ -147,7 +139,6 @@ export function DashboardHeader() {
                     transition={{ duration: 0.15, ease: "easeOut" }}
                     className="absolute right-0 top-full mt-2 w-64 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] p-2 shadow-xl shadow-slate-900/10 dark:shadow-black/50 z-50 overflow-hidden"
                   >
-                    {/* User Info Header inside Dropdown */}
                     <div className="p-3 bg-slate-50/80 dark:bg-slate-900/80 rounded-xl border border-slate-100 dark:border-slate-800/80 space-y-1.5">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-slate-900 dark:text-white">
@@ -170,7 +161,6 @@ export function DashboardHeader() {
                       )}
                     </div>
 
-                    {/* Divider & Menu Actions */}
                     <div className="pt-2 space-y-1">
                       <button
                         type="button"

@@ -48,11 +48,9 @@ export function SalesTable({ data }: SalesTableProps) {
   const [sortField, setSortField] = useState<SortField>("efektivitas_visit_persen");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
 
-  // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
 
-  // Filtering
   const filteredData = useMemo(() => {
     return data.filter((item) => {
       const matchSearch =
@@ -66,7 +64,6 @@ export function SalesTable({ data }: SalesTableProps) {
     });
   }, [data, searchQuery, selectedArea]);
 
-  // Sorting
   const sortedData = useMemo(() => {
     return [...filteredData].sort((a, b) => {
       const aVal = a[sortField];
@@ -86,7 +83,6 @@ export function SalesTable({ data }: SalesTableProps) {
     });
   }, [filteredData, sortField, sortOrder]);
 
-  // Pagination calculation
   const totalItems = sortedData.length;
   const totalPages = Math.ceil(totalItems / pageSize) || 1;
   const startIndex = totalItems > 0 ? (currentPage - 1) * pageSize + 1 : 0;
@@ -167,7 +163,6 @@ export function SalesTable({ data }: SalesTableProps) {
             </CardDescription>
           </div>
 
-          {/* Quick Counter Badge */}
           <div className="text-xs text-slate-600 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 self-start md:self-auto font-medium">
             Halaman <span className="font-bold text-slate-900 dark:text-slate-100">{currentPage}</span> dari{" "}
             <span className="font-bold text-slate-900 dark:text-slate-100">{totalPages}</span> (Total{" "}
@@ -175,7 +170,6 @@ export function SalesTable({ data }: SalesTableProps) {
           </div>
         </div>
 
-        {/* Filter & Search Bar */}
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-12 gap-3">
           <div className="sm:col-span-6 lg:col-span-5">
             <Input
@@ -384,10 +378,8 @@ export function SalesTable({ data }: SalesTableProps) {
           </table>
         </div>
 
-        {/* Pagination Controls Section */}
         {totalItems > 0 && (
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 text-xs text-slate-600 dark:text-slate-400">
-            {/* Range info and page size selector */}
             <div className="flex items-center gap-3">
               <span>
                 Menampilkan <span className="font-bold text-slate-900 dark:text-slate-100">{startIndex}</span> -{" "}
@@ -412,7 +404,6 @@ export function SalesTable({ data }: SalesTableProps) {
               </div>
             </div>
 
-            {/* Navigation buttons */}
             <div className="flex items-center gap-1.5 self-end sm:self-auto">
               <button
                 type="button"
@@ -425,7 +416,6 @@ export function SalesTable({ data }: SalesTableProps) {
                 <span className="hidden xs:inline">Sebelumnya</span>
               </button>
 
-              {/* Page Number Buttons */}
               <div className="flex items-center gap-1">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                   <button

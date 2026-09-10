@@ -22,7 +22,6 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Hilangkan outline browser & tap highlight pada elemen grafik Recharts di mobile/tablet */
 .recharts-wrapper,
 .recharts-wrapper *,
 .recharts-surface,

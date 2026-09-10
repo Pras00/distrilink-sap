@@ -49,19 +49,15 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/70 dark:bg-[#090d16] text-slate-800 dark:text-slate-100 transition-colors duration-200">
-      {/* Header with user info, theme toggle, & logout */}
       <DashboardHeader />
 
-      {/* Main Content */}
       <motion.main
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
         className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8"
       >
-        {/* Welcome Banner */}
         <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-blue-700 via-blue-800 to-indigo-950 p-6 sm:p-8 text-white shadow-xl shadow-blue-950/20 border border-blue-600/30">
-          {/* Subtle background glow */}
           <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-blue-400/20 blur-2xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -78,7 +74,6 @@ export default function DashboardPage() {
               </p>
             </div>
 
-            {/* Quick Highlight Cards */}
             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
               {topPerformer && (
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 text-xs space-y-1">
@@ -106,7 +101,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Section 1: Summary Cards */}
         <section aria-labelledby="summary-heading">
           <h3 id="summary-heading" className="sr-only">
             Ringkasan Metrik
@@ -114,7 +108,6 @@ export default function DashboardPage() {
           <SummaryCards summary={summary} totalSalesCount={salesData.length} />
         </section>
 
-        {/* Section 2: Visualisasi Chart */}
         <section aria-labelledby="charts-heading">
           <h3 id="charts-heading" className="sr-only">
             Visualisasi Grafik
@@ -122,7 +115,6 @@ export default function DashboardPage() {
           <PerformanceChart data={salesData} />
         </section>
 
-        {/* Section 3: Tabel Performa Sales */}
         <section aria-labelledby="table-heading">
           <h3 id="table-heading" className="sr-only">
             Tabel Data Salesman
@@ -131,7 +123,6 @@ export default function DashboardPage() {
         </section>
       </motion.main>
 
-      {/* Footer */}
       <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e] py-6 text-center text-xs text-slate-500 dark:text-slate-400 transition-colors">
         <div className="max-w-7xl mx-auto px-4">
           <p className="font-medium text-slate-700 dark:text-slate-300">
