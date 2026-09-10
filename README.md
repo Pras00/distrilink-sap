@@ -185,9 +185,6 @@ test-maganghub-urbansolv/
 
 ## 👤 Informasi Pengembang
 
-- **Nama Kandidat**: Prasetia Wahyu Ramadhan
-- **Posisi**: Frontend Web Intern
-- **Program**: Seleksi Magang MagangHub
+- **Nama**: Prasetia Wahyu Ramadhan
 - **Mitra Industri**: PT Urbansolv (Distrilink SAP)
-- **Tautan Portfolio / GitHub**: [https://github.com/Pras00](https://github.com/Pras00)
 
