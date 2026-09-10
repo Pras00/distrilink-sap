@@ -13,7 +13,6 @@
 ## 🌐 Tautan Demo & Repositori
 
 - **Live Production URL**: [https://distrilink-sap.vercel.app](https://distrilink-sap.vercel.app)
-- **Tautan Dashboard Langsung**: [https://distrilink-sap.vercel.app/dashboard](https://distrilink-sap.vercel.app/dashboard)
 - **Repositori GitHub**: [https://github.com/Pras00/distrilink-sap](https://github.com/Pras00/distrilink-sap)
 
 ---
@@ -43,26 +42,6 @@ Seluruh 7 poin tugas dan ketentuan teknis pada dokumen soal telah dianalisis dan
 | **6** | **Fitur Pencarian & Filter Sederhana**<br>Pencarian nama/area dan filter berdasarkan area. | **Terpenuhi** ⭐ | *Live text search* (nama salesman/area), dropdown filter wilayah, *multi-column sorting* (asc/desc), pagination interaktif, serta *empty state* dengan tombol *reset filter*. | [`SalesTable.tsx`](src/components/dashboard/SalesTable.tsx) |
 | **7** | **Tombol Logout pada Dashboard**<br>Mengembalikan pengguna ke halaman Login. | **Terpenuhi** ⭐ | Tombol logout di dropdown profil supervisor. Membersihkan sesi `localStorage` dan meredirect pengguna kembali ke `/login`. | [`DashboardHeader.tsx`](src/components/dashboard/DashboardHeader.tsx) |
 | **8** | **Ketentuan Teknis Wajib**<br>Next.js, TypeScript, Tailwind CSS, dataset lokal, README jelas. | **Terpenuhi** ⭐ | Next.js 16.3.4 (Turbopack), React 19, TypeScript strict mode, Tailwind CSS v4, dataset lokal presisi, dan dokumentasi lengkap. | *Root Repository* |
-
----
-
-## 📌 Asumsi Teknis & Bisnis (Explicit Documentation)
-
-Sesuai dengan ketentuan umum pada dokumen soal (*"Jika ada asumsi yang diambil karena soal tidak menjelaskan detail tertentu, kandidat wajib menuliskan asumsi tersebut secara eksplisit"*), berikut adalah daftar asumsi yang diterapkan:
-
-1. **Peran Pengguna Supervisor Regional**:  
-   Pengguna yang melakukan login diasumsikan memiliki peran sebagai **SFA Supervisor Lapangan** untuk regional Jawa Barat. Wilayah operasional mencakup 5 area kerja salesman: Bandung Kota, Bandung Barat, Cimahi, Bandung Timur, dan Soreang.
-2. **Kompabilitas Input Login (Email & Username)**:  
-   Meskipun endpoint `POST https://dummyjson.com/auth/login` secara baku menerima `username`, pengguna di lapangan sering kali mengingat akun mereka dalam format *email*. Aplikasi dilengkapi fitur *smart lookup*: jika pengguna memasukkan email akun DummyJSON yang valid (misal: `emily.johnson@x.dummyjson.com`), sistem secara otomatis mencari username terkait di DummyJSON sebelum mengirim otorisasi, sehingga login tetap berjalan mulus.
-3. **Persistensi Sesi Autentikasi**:  
-   Sesuai arahan soal, token dan profil pengguna disimpan di `localStorage` klien (`distrilink_auth_user`) dan disinkronkan secara reaktif menggunakan `useSyncExternalStore` pada React 19 untuk mencegah masalah *hydration mismatch*.
-4. **Metrik Kendala Out of Stock (OOS)**:  
-   Ketika seorang salesman tidak memiliki pesanan gagal OOS (`jumlah_order_oos: 0`), tampilan distandarkan menjadi label hijau informatif `"0 order"` (bukan teks kosong atau tanda minus) agar supervisor langsung mendapatkan kepastian bahwa stok aman.
-5. **Kategori Ambang Efektivitas Kunjungan**:  
-   Untuk mempermudah pemantauan visual, efektivitas kunjungan diklasifikasikan ke dalam 3 level performa:
-   - **Sangat Baik / Mencapai Target ($\ge 85\%$)**: Indikator warna hijau zamrud (*Emerald*).
-   - **Baik / Cukup ($75\% - 84\%$)**: Indikator warna biru/kuning (*Amber*).
-   - **Perlu Evaluasi ($< 75\%$)**: Indikator warna merah (*Rose*).
 
 ---
 
