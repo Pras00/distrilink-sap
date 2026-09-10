@@ -49,7 +49,7 @@ Seluruh 7 poin tugas dan ketentuan teknis pada dokumen soal telah dianalisis dan
 
 Selain memenuhi seluruh kebutuhan dasar soal, aplikasi ini dilengkapi berbagai fitur bernilai tambah (*exceeding expectations*):
 
-### 1. Desain Logo Vektor Korporat Resmi (`Logo.tsx`)
+### 1. Desain Logo Vektor (`Logo.tsx`)
 - Logo SVG murni kustom tanpa gambar statis raster, merepresentasikan huruf **"D"** (*Distribution*), jalur tulang punggung rantai pasok (*Spine Chain*), titik simpul toko (*Distribution Nodes*), dan panah pertumbuhan penjualan (*Dynamic Growth Arrow*).
 - Menggunakan ID SVG dinamis via `useId()` sehingga aman dari bentrokan ID rendering di Next.js.
 
