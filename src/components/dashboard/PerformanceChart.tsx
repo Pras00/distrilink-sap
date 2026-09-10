@@ -151,7 +151,7 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
                 </span>
               ) : (
                 <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                  Nihil (0)
+                  0 order
                 </span>
               )}
             </p>
@@ -301,7 +301,7 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
             transition={{ duration: 0.2 }}
             className="overflow-x-auto pb-2 -mx-2 px-2 sm:mx-0 sm:px-0 scrollbar-thin select-none outline-none focus:outline-none [-webkit-tap-highlight-color:transparent]"
           >
-            <div className="min-w-[620px] sm:min-w-full h-80 sm:h-96 select-none outline-none focus:outline-none [-webkit-tap-highlight-color:transparent]">
+            <div className="min-w-155 sm:min-w-full h-80 sm:h-96 select-none outline-none focus:outline-none [-webkit-tap-highlight-color:transparent]">
               <ResponsiveContainer width="100%" height="100%">
                 {chartMode === "effectiveness" ? (
                   <BarChart
@@ -569,7 +569,7 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                       </span>
                     ) : (
                       <span className="text-emerald-600 dark:text-emerald-400">
-                        Nihil (0)
+                        0 order
                       </span>
                     )}
                   </p>

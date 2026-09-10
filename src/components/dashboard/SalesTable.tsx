@@ -325,7 +325,7 @@ export function SalesTable({ data }: SalesTableProps) {
                       {sales.kunjungan_realisasi} outlet
                     </td>
                     <td className="py-3.5 px-4 whitespace-nowrap">
-                      <div className="space-y-1.5 min-w-[140px]">
+                      <div className="space-y-1.5 min-w-35">
                         <div className="flex items-center justify-between">
                           {renderEffectivenessBadge(sales.efektivitas_visit_persen)}
                         </div>
@@ -355,7 +355,7 @@ export function SalesTable({ data }: SalesTableProps) {
                         </span>
                       ) : (
                         <span className="inline-flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 font-medium px-2 py-0.5 text-xs border border-emerald-200 dark:border-emerald-800">
-                          0 (Lancar)
+                          0 order
                         </span>
                       )}
                     </td>
