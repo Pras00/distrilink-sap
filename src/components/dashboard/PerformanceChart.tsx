@@ -63,7 +63,7 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
     const isGood = item.efektivitas >= 80;
 
     return (
-      <div className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white/95 dark:bg-[#0f172a]/95 p-3.5 sm:p-4 shadow-2xl shadow-slate-900/15 dark:shadow-black/70 backdrop-blur-md text-xs space-y-3 min-w-60 max-w-72 transition-all pointer-events-none">
+      <div className="hidden sm:block rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white/95 dark:bg-[#0f172a]/95 p-3.5 sm:p-4 shadow-2xl shadow-slate-900/15 dark:shadow-black/70 backdrop-blur-md text-xs space-y-3 min-w-60 max-w-72 transition-all pointer-events-none">
         {/* Header: Avatar, Nama, dan Badge Wilayah */}
         <div className="flex items-center justify-between gap-3 pb-2.5 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
@@ -299,9 +299,9 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2 }}
-            className="overflow-x-auto pb-2 -mx-2 px-2 sm:mx-0 sm:px-0 scrollbar-thin"
+            className="overflow-x-auto pb-2 -mx-2 px-2 sm:mx-0 sm:px-0 scrollbar-thin select-none outline-none focus:outline-none [-webkit-tap-highlight-color:transparent]"
           >
-            <div className="min-w-[620px] sm:min-w-full h-80 sm:h-96">
+            <div className="min-w-[620px] sm:min-w-full h-80 sm:h-96 select-none outline-none focus:outline-none [-webkit-tap-highlight-color:transparent]">
               <ResponsiveContainer width="100%" height="100%">
                 {chartMode === "effectiveness" ? (
                   <BarChart
@@ -378,12 +378,8 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                       radius={[8, 8, 2, 2]}
                       maxBarSize={48}
                       onClick={handleBarClick}
-                      className="cursor-pointer"
-                      activeBar={{
-                        stroke: isDark ? "#ffffff" : "#1e40af",
-                        strokeWidth: 2,
-                        fillOpacity: 1,
-                      }}
+                      className="cursor-pointer outline-none focus:outline-none"
+                      activeBar={false}
                     >
                       {chartData.map((entry, index) => (
                         <Cell
@@ -451,11 +447,8 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                       radius={[6, 6, 2, 2]}
                       maxBarSize={36}
                       onClick={handleBarClick}
-                      className="cursor-pointer"
-                      activeBar={{
-                        stroke: isDark ? "#cbd5e1" : "#475569",
-                        strokeWidth: 1.5,
-                      }}
+                      className="cursor-pointer outline-none focus:outline-none"
+                      activeBar={false}
                     />
                     <Bar
                       dataKey="realisasi"
@@ -464,11 +457,8 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                       radius={[6, 6, 2, 2]}
                       maxBarSize={36}
                       onClick={handleBarClick}
-                      className="cursor-pointer"
-                      activeBar={{
-                        stroke: "#34d399",
-                        strokeWidth: 2,
-                      }}
+                      className="cursor-pointer outline-none focus:outline-none"
+                      activeBar={false}
                     />
                   </BarChart>
                 )}
