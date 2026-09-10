@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="mainGrad" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="45%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="12" fill="#0c121e" />
+  <rect x="1" y="1" width="46" height="46" rx="11" stroke="url(#borderGrad)" stroke-width="2" />
+  <path d="M 14 11 L 14 37" stroke="url(#mainGrad)" stroke-width="4" stroke-linecap="round" />
+  <path d="M 14 11 C 27 11, 37 16, 37 24 C 37 32, 27 37, 14 37" stroke="url(#mainGrad)" stroke-width="4" stroke-linecap="round" />
+  <circle cx="14" cy="11" r="4.5" fill="#0c121e" stroke="#38bdf8" stroke-width="2.5" />
+  <circle cx="14" cy="11" r="2" fill="#38bdf8" />
+  <circle cx="14" cy="37" r="4.5" fill="#0c121e" stroke="#38bdf8" stroke-width="2.5" />
+  <circle cx="14" cy="37" r="2" fill="#38bdf8" />
+  <path d="M 21 27 L 31 17 M 31 17 H 24 M 31 17 V 24" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="36.5" cy="24" r="3" fill="#38bdf8" />
+</svg>

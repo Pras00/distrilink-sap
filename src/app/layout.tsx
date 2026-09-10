@@ -15,6 +15,13 @@ export const metadata: Metadata = {
   title: "Distrilink SAP - Dashboard Analisa Performa Salesman",
   description:
     "Purwarupa Dashboard Analisa Performa Salesman untuk Seleksi Magang MagangHub di PT Urbansolv",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
