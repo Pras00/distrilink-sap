@@ -25,7 +25,6 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { AREAS } from "@/data/salesData";
 
 interface SalesTableProps {
   data: SalesPerformance[];
@@ -51,6 +50,18 @@ export function SalesTable({ data }: SalesTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
 
+  const availableAreas = useMemo(() => {
+    const uniqueAreas = Array.from(
+      new Set(data.map((item) => item.area).filter(Boolean))
+    );
+    uniqueAreas.sort((a, b) => a.localeCompare(b, "id"));
+    return ["Semua Area", ...uniqueAreas];
+  }, [data]);
+
+  const activeArea = availableAreas.includes(selectedArea)
+    ? selectedArea
+    : "Semua Area";
+
   const filteredData = useMemo(() => {
     return data.filter((item) => {
       const matchSearch =
@@ -58,11 +69,11 @@ export function SalesTable({ data }: SalesTableProps) {
         item.area.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchArea =
-        selectedArea === "Semua Area" || item.area === selectedArea;
+        activeArea === "Semua Area" || item.area === activeArea;
 
       return matchSearch && matchArea;
     });
-  }, [data, searchQuery, selectedArea]);
+  }, [data, searchQuery, activeArea]);
 
   const sortedData = useMemo(() => {
     return [...filteredData].sort((a, b) => {
@@ -185,17 +196,17 @@ export function SalesTable({ data }: SalesTableProps) {
 
           <div className="sm:col-span-4 lg:col-span-4">
             <Select
-              value={selectedArea}
+              value={activeArea}
               onChange={(e) => {
                 setSelectedArea(e.target.value);
                 setCurrentPage(1);
               }}
-              options={AREAS.map((area) => ({ value: area, label: area }))}
+              options={availableAreas.map((area) => ({ value: area, label: area }))}
             />
           </div>
 
           <div className="sm:col-span-2 lg:col-span-3 flex items-center">
-            {(searchQuery !== "" || selectedArea !== "Semua Area") && (
+            {(searchQuery !== "" || activeArea !== "Semua Area") && (
               <button
                 type="button"
                 onClick={handleResetFilters}

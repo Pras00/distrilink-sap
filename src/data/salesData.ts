@@ -47,15 +47,3 @@ export const initialSalesData: SalesPerformance[] = [
     jumlah_order_oos: 3,
   },
 ];
-
-export const AREAS = [
-  "Semua Area",
-  "Bandung Kota",
-  "Bandung Barat",
-  "Bandung Timur",
-  "Bandung Selatan",
-  "Cimahi",
-  "Soreang",
-  "Padalarang",
-  "Lembang",
-] as const;
